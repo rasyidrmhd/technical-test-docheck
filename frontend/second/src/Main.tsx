@@ -3,12 +3,15 @@
  * @copyright © All rights reserved. DoCheck 2022
  */
 import Item from "./components/Item";
+import { ItemProvider } from "./context/ItemContext";
 
 function Main() {
   return (
-    <div id="main">
-      <Item name="Bread" qty={20} price={"$3" as string} />
-    </div>
+    <ItemProvider>
+      <div id="main">
+        <Item />
+      </div>
+    </ItemProvider>
   );
 }
 export default Main;

@@ -3,20 +3,24 @@
  * @copyright © All rights reserved. DoCheck 2022
  */
 
-import { useEffect } from "react";
+import React from "react";
+import { ItemContext } from "../context/ItemContext";
 
-interface ItemProps {
-  name: string;
-  qty: number;
-  price: number | string;
-}
-
-function Item(props: ItemProps) {
-  useEffect(() => console.log("data", props), []);
+function Item() {
+  const value = React.useContext(ItemContext);
+  React.useEffect(() => {
+    console.log(value, ">>>>data");
+  }, []);
 
   return (
     <div className="item">
       <span>Hello World</span>
+      <br />
+      <span>Item name: {value.name}</span>
+      <br />
+      <span>Item quantity: {value.qty}</span>
+      <br />
+      <span>Item price: {value.price}</span>
     </div>
   );
 }
