@@ -13,6 +13,7 @@ interface ItemProps {
 
 function Item(props: ItemProps) {
   useEffect(() => console.log("data", props), []);
+
   return (
     <div className="item">
       <span>Hello World</span>
