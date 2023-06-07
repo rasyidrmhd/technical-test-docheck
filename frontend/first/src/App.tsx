@@ -38,7 +38,7 @@ function App() {
       <tbody>
         {passengerList.map((passenger) => (
           <tr>
-            <td>{passenger.id}</td>
+            <td className="text-center">{passenger.id}</td>
             <td>{passenger.name}</td>
             <td>{passenger.age}</td>
           </tr>

@@ -2,13 +2,21 @@ table {
   border-collapse: collapse;
 }
 
-th {
-  text-align: center;
-}
-
 td,
 th {
   border: 1px solid #dddddd;
-  text-align: left;
   padding: 8px;
+}
+
+th {
+  background-color: #dddddd;
+}
+
+tbody > tr:nth-child(even) {
+  background-color: #f6f8fa;
+}
+
+th,
+.text-center {
+  text-align: center;
 }
