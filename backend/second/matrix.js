@@ -10,8 +10,9 @@ const columnCount = matrix[0].length;
 const rowCount = matrix.length;
 
 let rowStart = 0;
+let columnStart = 0;
 
-for (let column = 0; column < columnCount; column++) {
+for (let column = columnStart; column < columnCount; column++) {
   console.log(matrix[rowStart][column]);
 }
 
@@ -21,10 +22,10 @@ for (let row = rowStart; row < rowCount; row++) {
   console.log(matrix[row][columnCount - 1]);
 }
 
-for (let column = columnCount - 1; column > 0; column--) {
+for (let column = columnCount - 1; column > columnStart; column--) {
   console.log(matrix[rowCount - 1][column - 1]);
 }
 
-for (let row = rowCount - 1; row > 1; row--) {
-  console.log(matrix[row - 1][0]);
+for (let row = rowCount - 1; row > rowStart; row--) {
+  console.log(matrix[row - 1][columnStart]);
 }
