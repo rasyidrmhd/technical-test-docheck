@@ -63,7 +63,7 @@ function someFunction2(n) {
 }
 ```
 
-now this is an interesting one, a multiple for-loops. we can do addition for each for-loop we have here.</br></br>
+now this is an interesting one, a nested for-loops. we can do addition for each for-loop we have here.</br></br>
 i for-loop</br>
 this is O(N), because the for-loop condition is following the input (`i < n`)
 
