@@ -96,3 +96,19 @@ for (var l = 0; l < 10; l++) {
 ### conclusion
 
 O(N) \* O(N) \* O(N) \* O(1) = O(N<sup>3</sup>)
+
+## 3
+
+---
+
+```typescript
+function exampleFunction3(n: number) {
+  while (true) {
+    console.log(n);
+  }
+}
+```
+
+and this is another interesting one, lol. there is a while-loop, with the condition `always true`.
+this will make an `infinite loop` like number 1 above, so i guess there is no time complexities or
+`undefined`
