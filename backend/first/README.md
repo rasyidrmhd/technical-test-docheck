@@ -27,3 +27,21 @@ the right example for this explanation is below:
 const arr = [1, 2, 3, 4, 5];
 console.log(arr[0]);
 ```
+
+## 1
+
+---
+
+```typescript
+function exampleFunction(n: number) {
+  for (var i = 0; i < n; i * 2) {
+    console.log(n);
+  }
+}
+```
+
+it seems a little bit tricky here if we aren't thorough. as my explanation above, the for-loop
+condition is same `i < n`, but here we are for-loop afterthought/iteration `i * 2`. the iteration
+will make the snippet code an `infinite loop`, and the interesting thing is there is no time complexities
+for `infinite loop` because it will always loop in unlimited time.
+so the answear for this is, `undefined` i guess.
