@@ -14,7 +14,7 @@ let columnStart = 0;
 let rowEnd = rowCount - 1;
 let columnEnd = columnCount - 1;
 
-while (columnEnd > columnStart && rowEnd > rowStart) {
+while (columnEnd >= columnStart && rowEnd >= rowStart) {
   for (let column = columnStart; column <= columnEnd; column++) {
     console.log(matrix[rowStart][column]);
   }
