@@ -9,11 +9,15 @@ const matrix = [
 const columnCount = matrix[0].length;
 const rowCount = matrix.length;
 
+let rowStart = 0;
+
 for (let column = 0; column < columnCount; column++) {
-  console.log(matrix[0][column]);
+  console.log(matrix[rowStart][column]);
 }
 
-for (let row = 0; row < rowCount; row++) {
+rowStart++;
+
+for (let row = rowStart; row < rowCount; row++) {
   console.log(matrix[row][columnCount - 1]);
 }
 
