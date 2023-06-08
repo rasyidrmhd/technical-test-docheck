@@ -11,23 +11,29 @@ const rowCount = matrix.length;
 
 let rowStart = 0;
 let columnStart = 0;
+let rowEnd = rowCount - 1;
+let columnEnd = columnCount - 1;
 
-for (let column = columnStart; column < columnCount; column++) {
+for (let column = columnStart; column <= columnEnd; column++) {
   console.log(matrix[rowStart][column]);
 }
 
 rowStart++;
 
-for (let row = rowStart; row < rowCount; row++) {
-  console.log(matrix[row][columnCount - 1]);
+for (let row = rowStart; row <= rowEnd; row++) {
+  console.log(matrix[row][columnEnd]);
 }
 
-for (let column = columnCount - 1; column > columnStart; column--) {
-  console.log(matrix[rowCount - 1][column - 1]);
+columnEnd--;
+
+for (let column = columnEnd; column >= columnStart; column--) {
+  console.log(matrix[rowEnd][column]);
 }
 
-for (let row = rowCount - 1; row > rowStart; row--) {
-  console.log(matrix[row - 1][columnStart]);
+rowEnd--;
+
+for (let row = rowEnd; row >= rowStart; row--) {
+  console.log(matrix[row][columnStart]);
 }
 
 columnStart++;
