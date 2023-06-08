@@ -5,3 +5,22 @@ const matrix = [
   [16, 17, 18, 19, 20],
   [21, 22, 23, 24, 25],
 ];
+
+const columnCount = matrix[0].length;
+const rowCount = matrix.length;
+
+for (let i = 0; i < columnCount; i++) {
+  console.log(matrix[0][i]);
+}
+
+for (let i = 0; i < rowCount; i++) {
+  console.log(matrix[i][columnCount - 1]);
+}
+
+for (let i = columnCount - 1; i > 0; i--) {
+  console.log(matrix[rowCount - 1][i - 1]);
+}
+
+for (let i = rowCount - 1; i > 1; i--) {
+  console.log(matrix[i - 1][0]);
+}
