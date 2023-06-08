@@ -29,3 +29,5 @@ for (let column = columnCount - 1; column > columnStart; column--) {
 for (let row = rowCount - 1; row > rowStart; row--) {
   console.log(matrix[row - 1][columnStart]);
 }
+
+columnStart++;
