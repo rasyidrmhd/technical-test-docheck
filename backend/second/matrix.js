@@ -14,26 +14,28 @@ let columnStart = 0;
 let rowEnd = rowCount - 1;
 let columnEnd = columnCount - 1;
 
-for (let column = columnStart; column <= columnEnd; column++) {
-  console.log(matrix[rowStart][column]);
+while (columnEnd > columnStart && rowEnd > rowStart) {
+  for (let column = columnStart; column <= columnEnd; column++) {
+    console.log(matrix[rowStart][column]);
+  }
+
+  rowStart++;
+
+  for (let row = rowStart; row <= rowEnd; row++) {
+    console.log(matrix[row][columnEnd]);
+  }
+
+  columnEnd--;
+
+  for (let column = columnEnd; column >= columnStart; column--) {
+    console.log(matrix[rowEnd][column]);
+  }
+
+  rowEnd--;
+
+  for (let row = rowEnd; row >= rowStart; row--) {
+    console.log(matrix[row][columnStart]);
+  }
+
+  columnStart++;
 }
-
-rowStart++;
-
-for (let row = rowStart; row <= rowEnd; row++) {
-  console.log(matrix[row][columnEnd]);
-}
-
-columnEnd--;
-
-for (let column = columnEnd; column >= columnStart; column--) {
-  console.log(matrix[rowEnd][column]);
-}
-
-rowEnd--;
-
-for (let row = rowEnd; row >= rowStart; row--) {
-  console.log(matrix[row][columnStart]);
-}
-
-columnStart++;
