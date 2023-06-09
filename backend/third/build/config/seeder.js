@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("./connection"));
 const fs_1 = __importDefault(require("fs"));
-const tasks = JSON.parse(fs_1.default.readFileSync("../../data/tasks.json", "utf-8"));
+const tasks = JSON.parse(fs_1.default.readFileSync("./src/data/tasks.json", "utf-8"));
 let insertTasks = `INSERT INTO "TodoLists" ("task", "description", "dueDate") VALUES `;
 tasks.forEach((task, idx) => {
     let { task: name, description, dueDate } = task;

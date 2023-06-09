@@ -7,7 +7,7 @@ interface Task {
   dueDate: Date;
 }
 
-const tasks: Task[] = JSON.parse(fs.readFileSync("../../data/tasks.json", "utf-8"));
+const tasks: Task[] = JSON.parse(fs.readFileSync("./src/data/tasks.json", "utf-8"));
 let insertTasks = `INSERT INTO "TodoLists" ("task", "description", "dueDate") VALUES `;
 
 tasks.forEach((task, idx) => {

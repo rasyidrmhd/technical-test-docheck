@@ -1,7 +1,7 @@
 import pool from "./connection";
 
 const createTodoLists = `
-    CREATE TABLE "TodoList" (
+    CREATE TABLE IF NOT EXISTS "TodoLists" (
       "id" SERIAL PRIMARY KEY,
       "task"  VARCHAR(100),
       "description" VARCHAR(255),
