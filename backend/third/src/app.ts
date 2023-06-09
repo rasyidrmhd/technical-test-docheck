@@ -1,11 +1,23 @@
-import express from "express";
+import express, { Application } from "express";
+import routes from "./routes";
 
-const app = express();
-const port = process.env.PORT || 3000;
+class App {
+  public app: Application;
 
-app.route("/").get((req, res) => {
-  res.send("this is initial simple todo list");
-});
+  constructor() {
+    this.app = express();
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.routes();
+  }
+
+  protected routes(): void {
+    this.app.use("/", routes);
+  }
+}
+
+const port: string | number = process.env.PORT || 3000;
+const app = new App().app;
 
 app.listen(port, () => {
   console.log("run on port ", port);
