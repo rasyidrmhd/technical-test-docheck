@@ -21,7 +21,7 @@ class App {
         connection_1.default.connect((err) => {
             if (err)
                 throw err;
-            console.log("connect to Postgre successfully");
+            console.log("connect to PostgreSQL successfully");
             this.app.listen(this.port, () => {
                 console.log("run on port ", this.port);
             });
