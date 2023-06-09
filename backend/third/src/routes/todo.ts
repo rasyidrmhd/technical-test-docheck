@@ -11,10 +11,7 @@ class Todo {
 
   public routes(): void {
     this.router.get("/", Todo_Controller.getAllTodoLists);
-
-    this.router.post("/create", (req: Request, res: Response) => {
-      res.send(req.body);
-    });
+    this.router.post("/", Todo_Controller.insertTodoList);
   }
 }
 

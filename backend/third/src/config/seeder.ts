@@ -1,11 +1,6 @@
+import { Task } from "../types";
 import pool from "./connection";
 import fs from "fs";
-
-interface Task {
-  task: string;
-  description: string;
-  dueDate: Date;
-}
 
 const tasks: Task[] = JSON.parse(fs.readFileSync("./src/data/tasks.json", "utf-8"));
 let insertTasks = `INSERT INTO "TodoLists" ("task", "description", "dueDate") VALUES `;

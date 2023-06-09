@@ -12,9 +12,7 @@ class Todo {
     }
     routes() {
         this.router.get("/", Todo_Controller_1.default.getAllTodoLists);
-        this.router.post("/create", (req, res) => {
-            res.send(req.body);
-        });
+        this.router.post("/", Todo_Controller_1.default.insertTodoList);
     }
 }
 exports.default = new Todo().router;

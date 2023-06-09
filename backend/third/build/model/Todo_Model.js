@@ -17,5 +17,19 @@ class Todo_Model {
             cb(null, result);
         });
     }
+    static insertTodoList(data, cb) {
+        const { task, description, dueDate } = data;
+        const insertTodoList = `
+      INSERT INTO "TodoLists" ("task", "description", "dueDate")
+      VALUES ('${task}', '${description}', '${dueDate}')
+    `;
+        connection_1.default.query(insertTodoList, (err, res) => {
+            // const result = res.rows.map((todoList: TodoList) => {
+            //   const { id, task, description, checked, createdAt, dueDate } = todoList;
+            //   return { id, task, description, checked, createdAt, dueDate };
+            // });
+            cb(null, { task, description, dueDate });
+        });
+    }
 }
 exports.default = Todo_Model;
