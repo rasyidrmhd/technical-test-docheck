@@ -7,7 +7,7 @@ const connection_1 = __importDefault(require("../config/connection"));
 class Todo_Model {
     static getAllTodoLists(cb) {
         const allTodoLists = `
-          SELECT * FROM "TodoLists"
+      SELECT * FROM "TodoLists"
     `;
         connection_1.default.query(allTodoLists, (err, res) => {
             const result = res.rows.map((todoList) => {
@@ -22,13 +22,33 @@ class Todo_Model {
         const insertTodoList = `
       INSERT INTO "TodoLists" ("task", "description", "dueDate")
       VALUES ('${task}', '${description}', '${dueDate}')
+      RETURNING *
     `;
         connection_1.default.query(insertTodoList, (err, res) => {
-            // const result = res.rows.map((todoList: TodoList) => {
-            //   const { id, task, description, checked, createdAt, dueDate } = todoList;
-            //   return { id, task, description, checked, createdAt, dueDate };
-            // });
-            cb(null, { task, description, dueDate });
+            const result = res.rows.map((todoList) => {
+                const { id, task, description, checked, createdAt, dueDate } = todoList;
+                return { id, task, description, checked, createdAt, dueDate };
+            });
+            cb(null, result[0]);
+        });
+    }
+    static deleteTodoListById(id, cb) {
+        const deleteTodoListById = `
+      DELETE FROM "TodoLists"
+      WHERE "id" = '${id}'
+      RETURNING *
+    `;
+        connection_1.default.query(deleteTodoListById, (err, res) => {
+            if (err) {
+                cb(err, null);
+            }
+            else {
+                const result = res.rows.map((todoList) => {
+                    const { id, task, description, checked, createdAt, dueDate } = todoList;
+                    return { id, task, description, checked, createdAt, dueDate };
+                });
+                cb(null, result[0]);
+            }
         });
     }
 }
