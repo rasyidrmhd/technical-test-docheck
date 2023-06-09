@@ -3,9 +3,12 @@ import routes from "./routes";
 
 class App {
   public app: Application;
+  public port: string | number;
 
-  constructor() {
+  constructor(port: number | string) {
     this.app = express();
+    this.port = port;
+
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.routes();
@@ -14,11 +17,12 @@ class App {
   protected routes(): void {
     this.app.use("/", routes);
   }
+
+  public listen() {
+    this.app.listen(this.port, () => {
+      console.log("run on port ", this.port);
+    });
+  }
 }
 
-const port: string | number = process.env.PORT || 3000;
-const app = new App().app;
-
-app.listen(port, () => {
-  console.log("run on port ", port);
-});
+export default App;
