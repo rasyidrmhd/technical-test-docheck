@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const routes_1 = __importDefault(require("./routes"));
+const connection_1 = __importDefault(require("./config/connection"));
 class App {
     constructor(port) {
         this.app = (0, express_1.default)();
@@ -17,8 +18,13 @@ class App {
         this.app.use("/", routes_1.default);
     }
     listen() {
-        this.app.listen(this.port, () => {
-            console.log("run on port ", this.port);
+        connection_1.default.connect((err) => {
+            if (err)
+                throw err;
+            console.log("connect to Postgre successfully");
+            this.app.listen(this.port, () => {
+                console.log("run on port ", this.port);
+            });
         });
     }
 }

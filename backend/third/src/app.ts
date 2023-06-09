@@ -1,5 +1,6 @@
 import express, { Application } from "express";
 import routes from "./routes";
+import pool from "./config/connection";
 
 class App {
   public app: Application;
@@ -19,8 +20,13 @@ class App {
   }
 
   public listen() {
-    this.app.listen(this.port, () => {
-      console.log("run on port ", this.port);
+    pool.connect((err) => {
+      if (err) throw err;
+      console.log("connect to Postgre successfully");
+
+      this.app.listen(this.port, () => {
+        console.log("run on port ", this.port);
+      });
     });
   }
 }
