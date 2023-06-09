@@ -5,12 +5,12 @@
     "dueDate": "2023-06-11"
   },
   {
-    "task": "bike service",
+    "task": "servis motor",
     "description": "ganti oli rutin dan bersihin cvt",
     "dueDate": "2023-06-17"
   },
   {
-    "task": "ticket war",
+    "task": "war ticket",
     "description": "jastip tiket demi persahabatan dan ayang",
     "dueDate": "2023-06-15"
   }

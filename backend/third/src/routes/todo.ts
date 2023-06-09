@@ -1,4 +1,5 @@
 import { Request, Response, Router } from "express";
+import Todo_Controller from "../controllers/Todo_Controller";
 
 class Todo {
   public router: Router;
@@ -9,9 +10,7 @@ class Todo {
   }
 
   public routes(): void {
-    this.router.get("/", (req: Request, res: Response) => {
-      res.send("this is all list");
-    });
+    this.router.get("/", Todo_Controller.getAllTodoLists);
 
     this.router.post("/create", (req: Request, res: Response) => {
       res.send(req.body);
