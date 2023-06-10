@@ -38,5 +38,18 @@ class Todo_Controller {
             }
         });
     }
+    static updateTodoListById(req, res) {
+        const { id } = req.params;
+        const { task, description, dueDate } = req.body;
+        const values = { task, description, dueDate };
+        Todo_Model_1.default.updateTodoListById(id, values, (err, todoList) => {
+            if (err) {
+                res.send(err);
+            }
+            else {
+                res.status(200).json({ message: `Task updated successfully` });
+            }
+        });
+    }
 }
 exports.default = Todo_Controller;

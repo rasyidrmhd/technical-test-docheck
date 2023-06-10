@@ -51,5 +51,27 @@ class Todo_Model {
             }
         });
     }
+    static updateTodoListById(id, data, cb) {
+        const { task, description, dueDate } = data;
+        console.log(data, id, ">>>>model");
+        const updateTodoListById = `
+      UPDATE "TodoLists"
+      SET "task" = '${task}', "description" = '${description}', "dueDate" = '${dueDate}'
+      WHERE "id" = '${id}'
+      RETURNING *
+    `;
+        connection_1.default.query(updateTodoListById, (err, res) => {
+            if (err) {
+                cb(err, null);
+            }
+            else {
+                const result = res.rows.map((todoList) => {
+                    const { id, task, description, checked, createdAt, dueDate } = todoList;
+                    return { id, task, description, checked, createdAt, dueDate };
+                });
+                cb(null, result[0]);
+            }
+        });
+    }
 }
 exports.default = Todo_Model;

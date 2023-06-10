@@ -13,6 +13,7 @@ class Todo {
     this.router.get("/", Todo_Controller.getAllTodoLists);
     this.router.post("/", Todo_Controller.insertTodoList);
     this.router.delete("/:id", Todo_Controller.deleteTodoListById);
+    this.router.put("/:id", Todo_Controller.updateTodoListById);
   }
 }
 
