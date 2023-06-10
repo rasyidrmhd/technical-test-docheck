@@ -33,7 +33,7 @@ class Todo_Model {
         }
         const allTodoLists = `
       SELECT * FROM "TodoLists"
-      ${whereQuery.length > 0 ? `WHERE ${whereQuery}` : ""}
+      ${where.length > 0 ? `WHERE ${whereQuery}` : ""}
       ${sortBy ? `ORDER BY ${sortQuery}` : ""}
     `;
         connection_1.default.query(allTodoLists, (err, res) => {
@@ -90,9 +90,20 @@ class Todo_Model {
     }
     static updateTodoListById(id, data, cb) {
         const { task, description, dueDate } = data;
+        const update = [];
+        if (task) {
+            update.push(`"task" = '${task}'`);
+        }
+        if (description) {
+            update.push(`"description" = '${description}'`);
+        }
+        if (dueDate) {
+            update.push(`"dueDate" = '${dueDate}'`);
+        }
+        const updateQuery = update.join(", ");
         const updateTodoListById = `
       UPDATE "TodoLists"
-      SET "task" = '${task}', "description" = '${description}', "dueDate" = '${dueDate}'
+      SET ${update.length > 0 ? updateQuery : ""}
       WHERE "id" = '${id}'
       RETURNING *
     `;
