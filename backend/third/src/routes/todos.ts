@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
 import Todo_Controller from "../controllers/Todo_Controller";
 
-class Todos {
+class Todo {
   public router: Router;
 
   constructor() {
@@ -18,4 +18,4 @@ class Todos {
   }
 }
 
-export default new Todos().router;
+export default new Todo().router;

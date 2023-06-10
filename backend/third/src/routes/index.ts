@@ -10,10 +10,6 @@ class Routes {
   }
 
   public routes(): void {
-    this.router.get("/", (req: Request, res: Response) => {
-      res.send("this is initial simple todo list with ts implementation");
-    });
-
     this.router.use("/todos", todos);
   }
 }
