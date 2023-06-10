@@ -10,10 +10,10 @@ if (process.env.NODE_ENV === "production") {
 } else {
   pool = new Pool({
     user: process.env.POSTGRES_USER,
-    host: "localhost",
-    database: "simple_todolist",
+    host: process.env.POSTGRES_HOST,
+    database: process.env.POSTGRES_DB,
     password: process.env.POSTGRES_PASSWORD,
-    port: 5432,
+    port: Number(process.env.POSTGRES_PORT),
   });
 }
 
