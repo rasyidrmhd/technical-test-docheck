@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import todo from "./todo";
+import todos from "./todos";
 
 class Routes {
   public router: Router;
@@ -10,11 +10,7 @@ class Routes {
   }
 
   public routes(): void {
-    this.router.get("/", (req: Request, res: Response) => {
-      res.send("this is initial simple todo list with ts implementation");
-    });
-
-    this.router.use("/todo", todo);
+    this.router.use("/todos", todos);
   }
 }
 
