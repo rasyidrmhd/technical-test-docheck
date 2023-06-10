@@ -1,3 +1,8 @@
+## Deployed url
+
+[Simple todo list api](https://simple-todo-list-api.vercel.app)</br>
+[Documentation](https://simple-todo-list-api.vercel.app/documentation)
+
 ## Run in your local
 
 Prerequisites:
