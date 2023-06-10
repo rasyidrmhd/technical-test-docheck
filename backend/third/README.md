@@ -7,7 +7,7 @@ Prerequisites:
 
 Step-by-step:
 
-1. Create `.env` and fill the value below with your port and postgreSQL configuration.
+1. Create `.env` file, copy and fill the value below with your port and postgreSQL configuration.
 
 ```
 PORT=
