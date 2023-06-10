@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Todo_Model_1 = __importDefault(require("../model/Todo_Model"));
+const Todo_Model_1 = __importDefault(require("../models/Todo_Model"));
 class Todo_Controller {
     static getAllTodoLists(req, res) {
         const task = req.query.task;

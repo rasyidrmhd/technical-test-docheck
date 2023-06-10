@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Todo_Model from "../model/Todo_Model";
+import Todo_Model from "../models/Todo_Model";
 import { Task } from "../types";
 
 class Todo_Controller {
