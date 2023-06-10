@@ -1,4 +1,6 @@
 import express, { Application } from "express";
+import swaggerUI from "swagger-ui-express";
+import apiDoc from "./openapi.json";
 import routes from "./routes";
 import pool from "./config/connection";
 
@@ -17,6 +19,7 @@ class App {
 
   protected routes(): void {
     this.app.use("/", routes);
+    this.app.use("/documentation", swaggerUI.serve, swaggerUI.setup(apiDoc));
   }
 
   public listen() {

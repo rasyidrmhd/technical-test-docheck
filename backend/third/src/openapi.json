@@ -1,0 +1,150 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple Todo List",
+    "description": "This is a simple CRUD Todo List API application made with Express and documented with Swagger",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "localhost"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Todo",
+      "description": ""
+    }
+  ],
+  "paths": {
+    "/todos": {
+      "get": {
+        "tags": ["Todo"],
+        "summary": "Get all task",
+        "responses": {
+          "200": {
+            "description": "default response"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Todo"],
+        "summary": "Insert 1 task",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["task, dueDate"],
+                "properties": {
+                  "task": {
+                    "type": "string",
+                    "default": "belajar web3"
+                  },
+                  "description": {
+                    "type": "string",
+                    "default": "meningkatkan soft skill"
+                  },
+                  "dueDate": {
+                    "type": "string",
+                    "default": "15-06-2023"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "default response"
+          }
+        }
+      }
+    },
+    "/todos/{id}": {
+      "put": {
+        "tags": ["Todo"],
+        "summary": "Update 1 task",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "task id",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "task": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "description": {
+                    "type": "string",
+                    "default": ""
+                  },
+                  "dueDate": {
+                    "type": "string",
+                    "default": ""
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "default response"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Todo"],
+        "summary": "Delete 1 task",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "task id",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response"
+          }
+        }
+      }
+    },
+    "/todos/check/{id}": {
+      "patch": {
+        "tags": ["Todo"],
+        "summary": "Check or uncheck 1 task",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "task id",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "default response"
+          }
+        }
+      }
+    }
+  }
+}
