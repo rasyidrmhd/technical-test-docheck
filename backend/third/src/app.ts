@@ -7,10 +7,12 @@ import pool from "./config/connection";
 class App {
   public app: Application;
   public port: string | number;
+  private swaggerCss: string;
 
   constructor(port: number | string) {
     this.app = express();
     this.port = port;
+    this.swaggerCss = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
@@ -20,6 +22,7 @@ class App {
   protected routes(): void {
     this.app.use("/", routes);
     this.app.use("/documentation", swaggerUI.serve, swaggerUI.setup(apiDoc));
+    swaggerUI.setup({ customCssUrl: this.swaggerCss });
   }
 
   public listen() {
