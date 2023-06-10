@@ -12,7 +12,7 @@ class App {
   constructor(port: number | string) {
     this.app = express();
     this.port = port;
-    this.swaggerCss = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+    this.swaggerCss = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.min.css";
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
