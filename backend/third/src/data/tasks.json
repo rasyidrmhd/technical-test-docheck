@@ -1,0 +1,17 @@
+[
+  {
+    "task": "beli buku",
+    "description": "beli buku laut bercerita yang sedang diskon di BBW",
+    "dueDate": "2023-06-11"
+  },
+  {
+    "task": "servis motor",
+    "description": "ganti oli rutin dan bersihin cvt",
+    "dueDate": "2023-06-17"
+  },
+  {
+    "task": "war ticket",
+    "description": "jastip tiket demi persahabatan dan ayang",
+    "dueDate": "2023-06-15"
+  }
+]
