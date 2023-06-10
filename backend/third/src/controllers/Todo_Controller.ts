@@ -26,9 +26,9 @@ class Todo_Controller {
     const values = { task, description, dueDate };
     Todo_Model.insertTodoList(values, (err, todoList) => {
       if (err) {
-        res.send(err);
+        res.status(500).json({ message: err.message });
       } else {
-        res.status(201).json({ task, description, dueDate, checked: todoList.checked });
+        res.status(201).json({ task, description, dueDate, checked: todoList?.checked });
       }
     });
   }
@@ -37,7 +37,7 @@ class Todo_Controller {
     const { id } = req.params;
     Todo_Model.deleteTodoListById(id, (err, todoList) => {
       if (err) {
-        res.send(err);
+        res.status(500).json({ message: err.message });
       } else {
         res.status(200).json({ message: `Task ${todoList?.task} deleted successfully` });
       }
@@ -50,7 +50,7 @@ class Todo_Controller {
     const values = { task, description, dueDate };
     Todo_Model.updateTodoListById(id, values, (err, todoList) => {
       if (err) {
-        res.send(err);
+        res.status(500).json({ message: err.message });
       } else {
         res.status(200).json({ message: `Task updated successfully` });
       }
@@ -61,7 +61,7 @@ class Todo_Controller {
     const { id } = req.params;
     Todo_Model.checkTodoListById(id, (err, todoList) => {
       if (err) {
-        res.send(err);
+        res.status(500).json({ message: err.message });
       } else {
         res.status(200).json({ message: `Task ${todoList?.task} ${todoList?.checked ? "checked" : "unchecked"} successfully` });
       }

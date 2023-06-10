@@ -10,7 +10,7 @@ class Todo_Model {
     return date.toLocaleDateString("id-ID", options);
   }
 
-  static getAllTodoLists(searchQuery: { task: string; description: string; dueDate: string }, sortBy: string, orderBy: string, cb: (err: Error | null, dataTodoLists: TodoList[]) => void) {
+  static getAllTodoLists(searchQuery: { task: string; description: string; dueDate: string }, sortBy: string, orderBy: string, cb: (err: Error | null, dataTodoLists: TodoList[] | null) => void) {
     let where: string[] = [];
     if (searchQuery.task) {
       where.push(`"task" ILIKE '%${searchQuery.task}%'`);
@@ -37,15 +37,19 @@ class Todo_Model {
     `;
 
     pool.query(allTodoLists, (err, res) => {
-      const result = res.rows.map((todoList: TodoList) => {
-        const { id, task, description, checked, createdAt, dueDate } = todoList;
-        return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
-      });
-      cb(null, result);
+      if (err) {
+        cb(err, null);
+      } else {
+        const result = res.rows.map((todoList: TodoList) => {
+          const { id, task, description, checked, createdAt, dueDate } = todoList;
+          return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
+        });
+        cb(null, result);
+      }
     });
   }
 
-  static insertTodoList(data: Task, cb: (err: Error | null, todoList: TodoList) => void) {
+  static insertTodoList(data: Task, cb: (err: Error | null, todoList: TodoList | null) => void) {
     const { task, description, dueDate } = data;
     const insertTodoList = `
       INSERT INTO "TodoLists" ("task", "description", "dueDate")
@@ -54,11 +58,15 @@ class Todo_Model {
     `;
 
     pool.query(insertTodoList, (err, res) => {
-      const result = res.rows.map((todoList: TodoList) => {
-        const { id, task, description, checked, createdAt, dueDate } = todoList;
-        return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
-      });
-      cb(null, result[0]);
+      if (err) {
+        cb(err, null);
+      } else {
+        const result = res.rows.map((todoList: TodoList) => {
+          const { id, task, description, checked, createdAt, dueDate } = todoList;
+          return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
+        });
+        cb(null, result[0]);
+      }
     });
   }
 

@@ -3,11 +3,11 @@ import pool from "./connection";
 const createTodoLists = `
     CREATE TABLE IF NOT EXISTS "TodoLists" (
       "id" SERIAL PRIMARY KEY,
-      "task"  VARCHAR(100),
+      "task"  VARCHAR(100) NOT NULL,
       "description" VARCHAR(255),
       "checked" BOOLEAN DEFAULT FALSE,
       "createdAt" TIMESTAMP DEFAULT NOW(),
-      "dueDate" DATE
+      "dueDate" DATE NOT NULL
     )
 `;
 

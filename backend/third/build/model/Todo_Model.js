@@ -37,11 +37,16 @@ class Todo_Model {
       ${sortBy ? `ORDER BY ${sortQuery}` : ""}
     `;
         connection_1.default.query(allTodoLists, (err, res) => {
-            const result = res.rows.map((todoList) => {
-                const { id, task, description, checked, createdAt, dueDate } = todoList;
-                return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
-            });
-            cb(null, result);
+            if (err) {
+                cb(err, null);
+            }
+            else {
+                const result = res.rows.map((todoList) => {
+                    const { id, task, description, checked, createdAt, dueDate } = todoList;
+                    return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
+                });
+                cb(null, result);
+            }
         });
     }
     static insertTodoList(data, cb) {
@@ -52,11 +57,16 @@ class Todo_Model {
       RETURNING *
     `;
         connection_1.default.query(insertTodoList, (err, res) => {
-            const result = res.rows.map((todoList) => {
-                const { id, task, description, checked, createdAt, dueDate } = todoList;
-                return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
-            });
-            cb(null, result[0]);
+            if (err) {
+                cb(err, null);
+            }
+            else {
+                const result = res.rows.map((todoList) => {
+                    const { id, task, description, checked, createdAt, dueDate } = todoList;
+                    return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
+                });
+                cb(null, result[0]);
+            }
         });
     }
     static deleteTodoListById(id, cb) {

@@ -26,10 +26,10 @@ class Todo_Controller {
         const values = { task, description, dueDate };
         Todo_Model_1.default.insertTodoList(values, (err, todoList) => {
             if (err) {
-                res.send(err);
+                res.status(500).json({ message: err.message });
             }
             else {
-                res.status(201).json({ task, description, dueDate, checked: todoList.checked });
+                res.status(201).json({ task, description, dueDate, checked: todoList === null || todoList === void 0 ? void 0 : todoList.checked });
             }
         });
     }
@@ -37,7 +37,7 @@ class Todo_Controller {
         const { id } = req.params;
         Todo_Model_1.default.deleteTodoListById(id, (err, todoList) => {
             if (err) {
-                res.send(err);
+                res.status(500).json({ message: err.message });
             }
             else {
                 res.status(200).json({ message: `Task ${todoList === null || todoList === void 0 ? void 0 : todoList.task} deleted successfully` });
@@ -50,7 +50,7 @@ class Todo_Controller {
         const values = { task, description, dueDate };
         Todo_Model_1.default.updateTodoListById(id, values, (err, todoList) => {
             if (err) {
-                res.send(err);
+                res.status(500).json({ message: err.message });
             }
             else {
                 res.status(200).json({ message: `Task updated successfully` });
@@ -61,7 +61,7 @@ class Todo_Controller {
         const { id } = req.params;
         Todo_Model_1.default.checkTodoListById(id, (err, todoList) => {
             if (err) {
-                res.send(err);
+                res.status(500).json({ message: err.message });
             }
             else {
                 res.status(200).json({ message: `Task ${todoList === null || todoList === void 0 ? void 0 : todoList.task} ${(todoList === null || todoList === void 0 ? void 0 : todoList.checked) ? "checked" : "unchecked"} successfully` });
