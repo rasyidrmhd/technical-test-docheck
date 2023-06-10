@@ -4,7 +4,11 @@ import { Task } from "../types";
 
 class Todo_Controller {
   static getAllTodoLists(req: Request, res: Response) {
-    Todo_Model.getAllTodoLists((err, dataTodoLists) => {
+    const task = req.query.task as string;
+    const description = req.query.description as string;
+    const dueDate = req.query.dueDate as string;
+    const search = { task, description, dueDate };
+    Todo_Model.getAllTodoLists(search, (err, dataTodoLists) => {
       if (err) {
         res.status(500).json({ message: err.message });
       } else {

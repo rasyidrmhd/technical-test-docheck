@@ -10,9 +10,21 @@ class Todo_Model {
     return date.toLocaleDateString("id-ID", options);
   }
 
-  static getAllTodoLists(cb: (err: Error | null, dataTodoLists: TodoList[]) => void) {
+  static getAllTodoLists(searchQuery: { task: string; description: string; dueDate: string }, cb: (err: Error | null, dataTodoLists: TodoList[]) => void) {
+    let where: string[] = [];
+    if (searchQuery.task) {
+      where.push(`"task" ILIKE '%${searchQuery.task}%'`);
+    }
+    if (searchQuery.description) {
+      where.push(`"description" ILIKE '%${searchQuery.description}%'`);
+    }
+    if (searchQuery.dueDate) {
+      where.push(`"dueDate" ILIKE '%${searchQuery.dueDate}%'`);
+    }
+    const whereQuery = where.join(" AND ");
     const allTodoLists = `
       SELECT * FROM "TodoLists"
+      ${whereQuery.length > 0 ? `WHERE ${whereQuery}` : ""}
     `;
 
     pool.query(allTodoLists, (err, res) => {

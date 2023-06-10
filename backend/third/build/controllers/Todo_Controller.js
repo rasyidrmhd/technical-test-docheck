@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Todo_Model_1 = __importDefault(require("../model/Todo_Model"));
 class Todo_Controller {
     static getAllTodoLists(req, res) {
-        Todo_Model_1.default.getAllTodoLists((err, dataTodoLists) => {
+        const task = req.query.task;
+        const description = req.query.description;
+        const dueDate = req.query.dueDate;
+        const search = { task, description, dueDate };
+        Todo_Model_1.default.getAllTodoLists(search, (err, dataTodoLists) => {
             if (err) {
                 res.status(500).json({ message: err.message });
             }
