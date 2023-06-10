@@ -21,8 +21,7 @@ class App {
 
   protected routes(): void {
     this.app.use("/", routes);
-    this.app.use("/documentation", swaggerUI.serve, swaggerUI.setup(apiDoc));
-    swaggerUI.setup({ customCssUrl: this.swaggerCss });
+    this.app.use("/documentation", swaggerUI.serve, swaggerUI.setup(apiDoc, { customCssUrl: this.swaggerCss }));
   }
 
   public listen() {
