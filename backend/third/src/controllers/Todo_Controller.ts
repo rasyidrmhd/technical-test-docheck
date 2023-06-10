@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Todo_Model from "../model/Todo_Model";
-import { TodoList } from "../types";
+import { Task } from "../types";
 
 class Todo_Controller {
   static getAllTodoLists(req: Request, res: Response) {
@@ -14,7 +14,7 @@ class Todo_Controller {
   }
 
   static insertTodoList(req: Request, res: Response) {
-    const { task, description, dueDate } = req.body as TodoList;
+    const { task, description, dueDate } = req.body as Task;
     const values = { task, description, dueDate };
     Todo_Model.insertTodoList(values, (err, todoList) => {
       if (err) {

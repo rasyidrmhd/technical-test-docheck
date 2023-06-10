@@ -2,6 +2,14 @@ import pool from "../config/connection";
 import { Task, TodoList } from "../types";
 
 class Todo_Model {
+  static normalizeDate(date: Date, withTime: boolean = false) {
+    let options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+    if (withTime) {
+      options = { ...options, hour: "numeric", minute: "numeric" };
+    }
+    return date.toLocaleDateString("id-ID", options);
+  }
+
   static getAllTodoLists(cb: (err: Error | null, dataTodoLists: TodoList[]) => void) {
     const allTodoLists = `
       SELECT * FROM "TodoLists"
@@ -10,7 +18,7 @@ class Todo_Model {
     pool.query(allTodoLists, (err, res) => {
       const result = res.rows.map((todoList: TodoList) => {
         const { id, task, description, checked, createdAt, dueDate } = todoList;
-        return { id, task, description, checked, createdAt, dueDate };
+        return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
       });
       cb(null, result);
     });
@@ -55,8 +63,6 @@ class Todo_Model {
 
   static updateTodoListById(id: string, data: Task, cb: (err: Error | null, updated: TodoList | null) => void) {
     const { task, description, dueDate } = data;
-    console.log(data, id, ">>>>model");
-
     const updateTodoListById = `
       UPDATE "TodoLists"
       SET "task" = '${task}', "description" = '${description}', "dueDate" = '${dueDate}'

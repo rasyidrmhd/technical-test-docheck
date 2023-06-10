@@ -9,8 +9,8 @@ interface TodoList {
   task: string;
   description: string;
   checked: boolean;
-  createdAt: Date;
-  dueDate: Date;
+  createdAt: string;
+  dueDate: string;
 }
 
 export { Task, TodoList };
