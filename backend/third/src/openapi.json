@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://simple-todo-list-api.vercel.app/"
+      "url": "https://simple-todo-list-api.vercel.app"
     }
   ],
   "tags": [
