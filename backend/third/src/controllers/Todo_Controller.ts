@@ -48,6 +48,17 @@ class Todo_Controller {
       }
     });
   }
+
+  static checkTodoListById(req: Request, res: Response) {
+    const { id } = req.params;
+    Todo_Model.checkTodoListById(id, (err, todoList) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.status(200).json({ message: `Task ${todoList?.task} ${todoList?.checked ? "checked" : "unchecked"} successfully` });
+      }
+    });
+  }
 }
 
 export default Todo_Controller;

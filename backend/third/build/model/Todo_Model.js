@@ -34,7 +34,7 @@ class Todo_Model {
         connection_1.default.query(insertTodoList, (err, res) => {
             const result = res.rows.map((todoList) => {
                 const { id, task, description, checked, createdAt, dueDate } = todoList;
-                return { id, task, description, checked, createdAt, dueDate };
+                return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
             });
             cb(null, result[0]);
         });
@@ -52,7 +52,7 @@ class Todo_Model {
             else {
                 const result = res.rows.map((todoList) => {
                     const { id, task, description, checked, createdAt, dueDate } = todoList;
-                    return { id, task, description, checked, createdAt, dueDate };
+                    return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
                 });
                 cb(null, result[0]);
             }
@@ -73,9 +73,45 @@ class Todo_Model {
             else {
                 const result = res.rows.map((todoList) => {
                     const { id, task, description, checked, createdAt, dueDate } = todoList;
-                    return { id, task, description, checked, createdAt, dueDate };
+                    return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
                 });
                 cb(null, result[0]);
+            }
+        });
+    }
+    static checkTodoListById(id, cb) {
+        const selectedTask = `
+      SELECT * From "TodoLists"
+      WHERE "id" = '${id}'
+    `;
+        connection_1.default.query(selectedTask, (err, res) => {
+            if (err) {
+                cb(err, null);
+            }
+            else {
+                const result = res.rows.map((todoList) => {
+                    const { checked } = todoList;
+                    return { checked };
+                });
+                const statusTask = result[0].checked;
+                const checkTodoListById = `
+          UPDATE "TodoLists"
+          set "checked" = '${!statusTask}'
+          WHERE "id" = '${id}'
+          RETURNING *
+        `;
+                connection_1.default.query(checkTodoListById, (err, res) => {
+                    if (err) {
+                        cb(err, null);
+                    }
+                    else {
+                        const result = res.rows.map((todoList) => {
+                            const { id, task, description, checked, createdAt, dueDate } = todoList;
+                            return { id, task, description, checked, createdAt: this.normalizeDate(new Date(createdAt), true), dueDate: this.normalizeDate(new Date(dueDate)) };
+                        });
+                        cb(null, result[0]);
+                    }
+                });
             }
         });
     }

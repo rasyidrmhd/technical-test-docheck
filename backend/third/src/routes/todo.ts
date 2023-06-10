@@ -14,6 +14,7 @@ class Todo {
     this.router.post("/", Todo_Controller.insertTodoList);
     this.router.delete("/:id", Todo_Controller.deleteTodoListById);
     this.router.put("/:id", Todo_Controller.updateTodoListById);
+    this.router.patch("/check/:id", Todo_Controller.checkTodoListById);
   }
 }
 
