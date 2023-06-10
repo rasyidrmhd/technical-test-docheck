@@ -10,7 +10,7 @@ class Todo_Model {
     return date.toLocaleDateString("id-ID", options);
   }
 
-  static getAllTodoLists(searchQuery: { task: string; description: string; dueDate: string }, cb: (err: Error | null, dataTodoLists: TodoList[]) => void) {
+  static getAllTodoLists(searchQuery: { task: string; description: string; dueDate: string }, sortBy: string, orderBy: string, cb: (err: Error | null, dataTodoLists: TodoList[]) => void) {
     let where: string[] = [];
     if (searchQuery.task) {
       where.push(`"task" ILIKE '%${searchQuery.task}%'`);
@@ -22,9 +22,18 @@ class Todo_Model {
       where.push(`"dueDate" ILIKE '%${searchQuery.dueDate}%'`);
     }
     const whereQuery = where.join(" AND ");
+
+    let sortQuery = `"${sortBy}" ${orderBy ? orderBy.toUpperCase() : "ASC"}`;
+    if (sortBy === "check") {
+      sortQuery = `"checked" DESC`;
+    } else if (sortBy === "uncheck") {
+      sortQuery = `"checked" ASC`;
+    }
+
     const allTodoLists = `
       SELECT * FROM "TodoLists"
       ${whereQuery.length > 0 ? `WHERE ${whereQuery}` : ""}
+      ${sortBy ? `ORDER BY ${sortQuery}` : ""}
     `;
 
     pool.query(allTodoLists, (err, res) => {

@@ -12,7 +12,7 @@ class Todo_Model {
         }
         return date.toLocaleDateString("id-ID", options);
     }
-    static getAllTodoLists(searchQuery, cb) {
+    static getAllTodoLists(searchQuery, sortBy, orderBy, cb) {
         let where = [];
         if (searchQuery.task) {
             where.push(`"task" ILIKE '%${searchQuery.task}%'`);
@@ -24,9 +24,17 @@ class Todo_Model {
             where.push(`"dueDate" ILIKE '%${searchQuery.dueDate}%'`);
         }
         const whereQuery = where.join(" AND ");
+        let sortQuery = `"${sortBy}" ${orderBy ? orderBy.toUpperCase() : "ASC"}`;
+        if (sortBy === "check") {
+            sortQuery = `"checked" DESC`;
+        }
+        else if (sortBy === "uncheck") {
+            sortQuery = `"checked" ASC`;
+        }
         const allTodoLists = `
       SELECT * FROM "TodoLists"
       ${whereQuery.length > 0 ? `WHERE ${whereQuery}` : ""}
+      ${sortBy ? `ORDER BY ${sortQuery}` : ""}
     `;
         connection_1.default.query(allTodoLists, (err, res) => {
             const result = res.rows.map((todoList) => {

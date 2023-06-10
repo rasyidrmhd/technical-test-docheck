@@ -10,7 +10,9 @@ class Todo_Controller {
         const description = req.query.description;
         const dueDate = req.query.dueDate;
         const search = { task, description, dueDate };
-        Todo_Model_1.default.getAllTodoLists(search, (err, dataTodoLists) => {
+        const sortBy = req.query.sortBy;
+        const orderBy = req.query.orderBy;
+        Todo_Model_1.default.getAllTodoLists(search, sortBy, orderBy, (err, dataTodoLists) => {
             if (err) {
                 res.status(500).json({ message: err.message });
             }
