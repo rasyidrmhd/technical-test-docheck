@@ -7,6 +7,11 @@ export interface Task {
   dueDate: string;
 }
 
+const toLocaleDateString = (date: Date) => {
+  let options: Intl.DateTimeFormatOptions = { year: "numeric", month: "long", day: "numeric" };
+  return date.toLocaleDateString("id-ID", options);
+};
+
 const initialState: { tasks: Task[] } = {
   tasks: [
     {
@@ -34,16 +39,17 @@ export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<{ name: string; dueDate: string }>) => {
-      if (!action.payload.name) {
+    addTask: (state, action: PayloadAction<{ name: string; dueDate: Date }>) => {
+      if (!action.payload.name || !action.payload.dueDate) {
         return;
       }
       const newId = state.tasks.length === 0 ? 1 : state.tasks[state.tasks.length - 1].id + 1;
+      const newDate = toLocaleDateString(action.payload.dueDate);
       state.tasks.push({
         id: newId,
         name: action.payload.name,
         checked: false,
-        dueDate: action.payload.dueDate,
+        dueDate: newDate,
       });
     },
     deleteTask: (state, action: PayloadAction<{ id: number }>) => {

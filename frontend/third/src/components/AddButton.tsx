@@ -1,9 +1,9 @@
 import React from "react";
 import { Icon } from "./Icon";
 
-const AddButton: React.FC = () => {
+const AddButton: React.FC<{ onClick: () => void }> = ({ onClick }) => {
   return (
-    <button className="button-add">
+    <button className="button-add" onClick={onClick}>
       <Icon icon="add" color="white" size="44px" />
     </button>
   );
