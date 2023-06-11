@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface Task {
   id: number;
   name: string;
+  checked: boolean;
 }
 
 const initialState: { tasks: Task[] } = {
@@ -18,14 +19,25 @@ export const taskSlice = createSlice({
       state.tasks.push({
         id: newId,
         name: action.payload.name,
+        checked: false,
       });
     },
     deleteTask: (state, action: PayloadAction<{ id: number }>) => {
       const deletedTaskId = state.tasks.findIndex((task) => task.id === action.payload.id);
-      state.tasks.splice(deletedTaskId, 1);
+      if (deletedTaskId !== -1) {
+        state.tasks.splice(deletedTaskId, 1);
+      }
+    },
+    checkTask: (state, action: PayloadAction<{ id: number }>) => {
+      state.tasks = state.tasks.map((task) => {
+        if (task.id === action.payload.id) {
+          return { ...task, checked: !task.checked };
+        }
+        return task;
+      });
     },
   },
 });
 
 export default taskSlice.reducer;
-export const { addTask, deleteTask } = taskSlice.actions;
+export const { addTask, deleteTask, checkTask } = taskSlice.actions;

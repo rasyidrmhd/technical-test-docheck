@@ -1,36 +1,51 @@
 import React from "react";
 import logo from "./logo.svg";
 import { useAppSelector, useAppDispatch } from "./store";
-import { addTask } from "./store/features/taskSlice";
+import { addTask, checkTask, deleteTask } from "./store/features/taskSlice";
 import "./App.css";
 
 function App() {
   const tasks = useAppSelector((state) => state.task.tasks);
   const dispatch = useAppDispatch();
+  const [inputTaskName, setInputTaskName] = React.useState<string>("");
 
   React.useEffect(() => {
     console.log(tasks, ">>>>task");
   }, [tasks]);
 
+  const onSubmit = React.useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (!inputTaskName) {
+        return;
+      }
+      dispatch(addTask({ name: inputTaskName }));
+      setInputTaskName("");
+    },
+    [inputTaskName]
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-
-      <button
-        onClick={() => {
-          dispatch(addTask({ name: "belajar gitar" }));
-        }}
-      >
-        add
-      </button>
+      <form onSubmit={onSubmit}>
+        <input type="text" value={inputTaskName} onChange={(e) => setInputTaskName(e.target.value)} />
+        <button type="submit">add</button>
+      </form>
+      <ul>
+        {tasks.map((task) => (
+          <li
+            key={task.id}
+            onClick={() => {
+              dispatch(checkTask({ id: task.id }));
+            }}
+            onDoubleClick={() => {
+              dispatch(deleteTask({ id: task.id }));
+            }}
+          >
+            {task.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
