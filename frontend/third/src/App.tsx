@@ -29,7 +29,7 @@ function App() {
       <div className="white-box">
         {filteredTasks.length === 0 && inputSearch ? (
           <div className="empty-task">
-            <text>No result.</text>
+            <text>No result, try another keyword.</text>
           </div>
         ) : tasks.length > 0 || showForm ? (
           <div className="card-group">
