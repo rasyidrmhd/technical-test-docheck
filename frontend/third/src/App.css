@@ -1,38 +1,124 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app {
+  background-color: #def6e7;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px 30px;
+  position: relative;
+  gap: 20px;
+}
+
+.header-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.white-box {
+  background-color: white;
+  flex-direction: row;
+  width: 100%;
+  height: 80vh;
+  border-radius: 8px;
+  display: flex;
+  padding: 40px 40px 20px;
+  gap: 20px;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.button-add {
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: #2fcc71;
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  width: 350px;
+  height: 70px;
+  gap: 10px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  border: 2px solid #dae8e6;
+  font-size: 14px;
+  word-wrap: break-word;
+  align-items: center;
+  align-content: stretch;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  border: 1px solid white;
+  padding: 15px 15px;
+  font-family: "inter";
+}
+
+input:focus {
+  outline: 2px solid #2fcc71;
+  font-family: "inter";
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-search {
+  height: 35px;
+  border-radius: 16px;
+}
+
+.button-search {
+  height: 35px;
+  width: 35px;
+  border: 0;
+  border-radius: 100%;
+  background-color: #2fcc71;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.task-side-box {
+  height: 70px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-body {
+  flex-grow: 1;
+}
+
+.checked-box {
+  height: 25px;
+  width: 25px;
+  border: 2px solid #2fcc71;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checked {
+  background-color: #2fcc71;
 }

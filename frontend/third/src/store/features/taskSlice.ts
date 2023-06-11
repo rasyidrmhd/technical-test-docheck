@@ -4,22 +4,46 @@ export interface Task {
   id: number;
   name: string;
   checked: boolean;
+  dueDate: string;
 }
 
 const initialState: { tasks: Task[] } = {
-  tasks: [],
+  tasks: [
+    {
+      id: 1,
+      name: "tidur",
+      checked: false,
+      dueDate: "16 Juni 2023",
+    },
+    {
+      id: 2,
+      name: "duduk",
+      checked: false,
+      dueDate: "16 Juni 2023",
+    },
+    {
+      id: 3,
+      name: "main",
+      checked: false,
+      dueDate: "16 Juni 2023",
+    },
+  ],
 };
 
 export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
-    addTask: (state, action: PayloadAction<{ name: string }>) => {
+    addTask: (state, action: PayloadAction<{ name: string; dueDate: string }>) => {
+      if (!action.payload.name) {
+        return;
+      }
       const newId = state.tasks.length === 0 ? 1 : state.tasks[state.tasks.length - 1].id + 1;
       state.tasks.push({
         id: newId,
         name: action.payload.name,
         checked: false,
+        dueDate: action.payload.dueDate,
       });
     },
     deleteTask: (state, action: PayloadAction<{ id: number }>) => {
