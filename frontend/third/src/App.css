@@ -96,6 +96,18 @@ input:focus {
   cursor: pointer;
 }
 
+.button-delete {
+  height: 35px;
+  width: 35px;
+  border: 0;
+  border-radius: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
 .task-side-box {
   height: 70px;
   width: 60px;
