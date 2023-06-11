@@ -1,10 +1,11 @@
 import React from "react";
 import { Icon } from "./Icon";
-import { Task, checkTask, deleteTask, addTask } from "../store/features/taskSlice";
+import { addTask } from "../store/features/taskSlice";
 import { useAppDispatch } from "../store";
 
 export const AddTaskCard: React.FC<{ showForm: React.Dispatch<React.SetStateAction<boolean>> }> = ({ showForm }) => {
   const dispatch = useAppDispatch();
+  const ref = React.useRef<HTMLInputElement>(null);
   const onSubmitSearch = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const task = e.currentTarget.task.value;
@@ -15,6 +16,13 @@ export const AddTaskCard: React.FC<{ showForm: React.Dispatch<React.SetStateActi
     dispatch(addTask({ name: task, dueDate: new Date(date) }));
     showForm(false);
   }, []);
+  React.useEffect(() => {
+    if (ref.current) {
+      ref.current.focus();
+      ref.current.scrollIntoView();
+    }
+  }, [ref]);
+
   return (
     <form onSubmit={onSubmitSearch}>
       <div className="card">
@@ -33,7 +41,7 @@ export const AddTaskCard: React.FC<{ showForm: React.Dispatch<React.SetStateActi
           </button>
         </div>
         <div className="card-body">
-          <input type="text" name="task" className="input-task" placeholder="type your new task" />
+          <input type="text" name="task" className="input-task" placeholder="type your new task" ref={ref} />
           <br />
           <input type="date" name="date" className="input-calendar" />
         </div>

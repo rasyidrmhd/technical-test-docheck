@@ -13,7 +13,140 @@ const toLocaleDateString = (date: Date) => {
 };
 
 const initialState: { tasks: Task[] } = {
-  tasks: [],
+  tasks: [
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "cukur",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "nyci",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+    {
+      id: 1,
+      name: "mandi",
+      checked: false,
+      dueDate: "19 Juni 2023",
+    },
+  ],
 };
 
 export const taskSlice = createSlice({
