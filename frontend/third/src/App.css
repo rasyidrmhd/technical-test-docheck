@@ -1,0 +1,202 @@
+.app {
+  background-color: #def6e7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 20px 30px;
+  position: relative;
+  gap: 20px;
+}
+
+.header-box {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.white-box {
+  background-color: white;
+  width: 100%;
+  height: 80vh;
+  border-radius: 8px;
+  padding: 40px 40px 20px;
+  overflow-y: auto;
+}
+
+.empty-task {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+
+.card-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card {
+  min-width: 250px;
+  min-height: 80px;
+  gap: 10px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  border: 2px solid #dae8e6;
+  font-size: 14px;
+  align-items: center;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.button-add {
+  width: 60px;
+  height: 60px;
+  border: 0;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2fcc71;
+  position: absolute;
+  bottom: 20px;
+  cursor: pointer;
+}
+
+.button-add-sm {
+  width: 25px;
+  height: 25px;
+  border: 0;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 20px;
+  cursor: pointer;
+}
+
+.green {
+  background-color: #2fcc71;
+}
+
+.red {
+  background-color: #fb3931;
+}
+
+.input-search {
+  border: 1px solid white;
+  padding: 15px 15px;
+  font-family: "inter";
+  height: 35px;
+  border-radius: 16px;
+}
+
+.input-search:focus {
+  outline: 2px solid #2fcc71;
+  font-family: "inter";
+}
+
+.input-task {
+  border: 0;
+  border-bottom: 2px solid #2fcc71;
+  padding: 6px;
+  font-family: "inter";
+  height: 24px;
+  width: 90%;
+  margin-bottom: 4px;
+}
+
+.input-task:focus {
+  outline: 0;
+  font-family: "inter";
+}
+
+.input-calendar {
+  height: 24px;
+  width: 90%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #2fcc71;
+  font-family: "inter";
+}
+
+.input-calendar:focus {
+  outline: 0;
+  font-family: "inter";
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.button-search {
+  height: 35px;
+  width: 35px;
+  border: 0;
+  border-radius: 100%;
+  background-color: #2fcc71;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.button-delete {
+  height: 35px;
+  width: 35px;
+  border: 0;
+  border-radius: 100%;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card-side-box {
+  height: 70px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-side-box-column {
+  height: 70px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-body {
+  flex-grow: 1;
+  padding: 10px 0;
+  word-wrap: break-word;
+}
+
+.checked-box {
+  height: 25px;
+  width: 25px;
+  border: 2px solid #2fcc71;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checked {
+  background-color: #2fcc71;
+}
