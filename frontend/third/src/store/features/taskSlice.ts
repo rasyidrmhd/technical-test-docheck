@@ -13,26 +13,7 @@ const toLocaleDateString = (date: Date) => {
 };
 
 const initialState: { tasks: Task[] } = {
-  tasks: [
-    {
-      id: 1,
-      name: "tidur",
-      checked: false,
-      dueDate: "16 Juni 2023",
-    },
-    {
-      id: 2,
-      name: "duduk",
-      checked: false,
-      dueDate: "16 Juni 2023",
-    },
-    {
-      id: 3,
-      name: "main",
-      checked: false,
-      dueDate: "16 Juni 2023",
-    },
-  ],
+  tasks: [],
 };
 
 export const taskSlice = createSlice({
