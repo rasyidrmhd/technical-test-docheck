@@ -27,7 +27,11 @@ function App() {
     <div className="app">
       <Header onSubmit={onSubmitSearch} />
       <div className="white-box">
-        {tasks.length > 0 || showForm ? (
+        {filteredTasks.length === 0 && inputSearch ? (
+          <div className="empty-task">
+            <text>No result.</text>
+          </div>
+        ) : tasks.length > 0 || showForm ? (
           <div className="card-group">
             {filteredTasks.map((task) => (
               <TaskCard key={task.id} id={task.id} name={task.name} checked={task.checked} dueDate={task.dueDate}></TaskCard>
