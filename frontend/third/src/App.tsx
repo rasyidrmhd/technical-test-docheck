@@ -23,6 +23,31 @@ function App() {
     setInputSearch(e.currentTarget.search.value);
   }, []);
 
+  React.useEffect(()=> {
+      const test = async () => {
+        try {
+          const data = {
+            identifier: "rasyidrmuhammad@gmail.com",
+            password: "Rasyidr20!"
+          }
+          const response = await fetch('http://18.141.240.171:1337/api/connect/google', {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            // body: JSON.stringify(data)
+          })
+          const result = await response.json();
+          console.log(result, ">>>>result");
+        } catch (err) {
+          console.log(err, ">>>>>error")
+        }
+      }
+
+      test()
+  }, [])
+
   return (
     <div className="app">
       <Header onSubmit={onSubmitSearch} />
